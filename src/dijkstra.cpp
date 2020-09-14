@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <ctime>
 
 using namespace std;
 
@@ -127,8 +128,15 @@ int main() {
     loadDataToArray(coordenates, fileName);
 
     createGraph(graphAtt48, coordenates);
+    
+    clock_t Ticks[2];
+    Ticks[0] = clock();
 
     dijkstra(graphAtt48, 0);
+    
+    Ticks[1] = clock();
+    double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+    printf("\nTempo gasto: %f ms.", Tempo);
 
     return 0;
 }
